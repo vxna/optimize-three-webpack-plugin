@@ -1,0 +1,26 @@
+{
+  "name": "@vxna/optimize-three-webpack-plugin",
+  "version": "0.0.1",
+  "description": "A compat layer that enables tree shaking without tears",
+  "author": "@vxna",
+  "license": "MIT",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vxna/optimize-three-webpack-plugin.git"
+  },
+  "keywords": [
+    "three.js",
+    "webpack"
+  ],
+  "engines": {
+    "node": ">= 8.6.0"
+  },
+  "peerDependencies": {
+    "three": "^0.99.0",
+    "webpack": "^4.26.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
