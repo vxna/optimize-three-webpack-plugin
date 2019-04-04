@@ -1,6 +1,8 @@
-/node_modules/
-.vscode
-*.log
-yarn-debug.log*
-yarn-error.log*
+node_modules
+coverage
+.vscode/
+.eslintcache
+.DS_Store
 Thumbs.db
+*.log
+Changelog.md

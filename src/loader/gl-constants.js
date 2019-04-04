@@ -1,4 +1,4 @@
-// https://cesiumjs.org/Cesium/Build/Documentation/WebGLConstants.html
+// https://github.com/AnalyticalGraphicsInc/cesium/blob/master/Source/Core/WebGLConstants.js
 
 module.exports = {
   DEPTH_BUFFER_BIT: 0x00000100,

@@ -1,6 +1,32 @@
 # @vxna/optimize-three-webpack-plugin
 
-A compat layer that enables tree shaking without tears
+A compat layer that enables tree shaking with JSM imports.
+
+## Warning
+
+This is possible with import name convention that I hope one day will be adopted in `three`.  
+I don't know if it works with TS and I am not going too support it on my own, PR welcome.
+
+## Import name convention
+
+Thanks to [JSM](https://github.com/mrdoob/three.js/search?q=JSM&type=Commits) initiative, we can now import loaders and things.
+
+```js
+// lib imports
+import { WebGLRenderer } from 'three'
+// becomes now
+import { WebGLRenderer } from '@three/core'
+
+// jsm loaders imports
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+// becomes now
+import { GLTFLoader } from '@three/loaders/GLTFLoader'
+
+// jsm controls imports
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+// becomes now
+import { OrbitControls } from '@three/controls/OrbitControls'
+```
 
 ## Rationale
 
@@ -46,4 +72,4 @@ module.exports = {
 
 ## License
 
-MIT (http://www.opensource.org/licenses/mit-license.php)
+[MIT](./LICENSE)
