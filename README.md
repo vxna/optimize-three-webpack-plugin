@@ -9,8 +9,12 @@ I don't know if it works with TS and I am not going too support it on my own, PR
 
 ## Import name convention
 
-Thanks to [JSM](https://github.com/mrdoob/three.js/search?q=JSM&type=Commits) initiative, we can now import loaders and things.
+Thanks to [JSM](https://github.com/mrdoob/three.js/search?q=JSM&type=Commits) initiative, we can now import loaders and things from examples folder but with simply aliasing `three` to `src/Three.js` tree shaking won't catch `JSM` imports. Here comes custom import name convetion that fixes this behavior and provides more human-readable imports.
 
+At the time of writing all available JSM imports are supported. You can see the full list [here](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/index.js#L14-L21).
+
+
+## Usage 
 ```js
 // lib imports
 import { WebGLRenderer } from 'three'
