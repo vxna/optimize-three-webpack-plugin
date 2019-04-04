@@ -13,8 +13,20 @@ Thanks to [JSM](https://github.com/mrdoob/three.js/search?q=JSM&type=Commits) in
 
 At the time of writing all available JSM imports are supported. You can see the full list [here](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/index.js#L14-L21).
 
+## Usage
 
-## Usage 
+**webpack.config.js**
+
+```js
+const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
+
+module.exports = {
+  plugins: [new OptimizeThreePlugin()]
+}
+```
+
+Your code:
+
 ```js
 // lib imports
 import { WebGLRenderer } from 'three'
@@ -60,18 +72,6 @@ total 381K
 
 > gzip-size build\0.8e10d7ecdf3c9cb6f57f.js
 78.7 kB
-```
-
-## Usage
-
-**webpack.config.js**
-
-```js
-const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
-
-module.exports = {
-  plugins: [new OptimizeThreePlugin()]
-}
 ```
 
 ## License
