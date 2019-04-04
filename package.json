@@ -1,6 +1,6 @@
 {
   "name": "@vxna/optimize-three-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A compat layer that enables tree shaking with JSM imports.",
   "author": "vxna",
   "license": "MIT",
