@@ -6,3 +6,4 @@ coverage
 Thumbs.db
 *.log
 Changelog.md
+*.stats.json

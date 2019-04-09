@@ -1,5 +1,7 @@
 # @vxna/optimize-three-webpack-plugin
 
+[![Build Status](https://travis-ci.com/vxna/optimize-three-webpack-plugin.svg)](https://travis-ci.com/vxna/optimize-three-webpack-plugin) [![npm](https://img.shields.io/npm/v/@vxna/optimize-three-webpack-plugin.svg)](https://www.npmjs.com/package/@vxna/optimize-three-webpack-plugin)
+
 A compat layer that enables tree shaking with JSM imports.
 
 ## Warning
@@ -9,7 +11,7 @@ I don't know if it works with TS and I am not going to support it on my own, PR 
 
 ## Import name convention
 
-In the past, tree shaking `three` was done at the userland with a workaround by aliasing `three` to `src/Three.js`. Recently, new [JSM](https://github.com/mrdoob/three.js/search?q=JSM&type=Commits) initiative landed in `three` package. `JSM` files allows us to import loaders and other things from the examples folder. That's awesome but tree shaking method that we've used is breaking new `JSM` imports now. 
+In the past, tree shaking `three` was done at the userland with a workaround by aliasing `three` to `src/Three.js`. Recently, new [JSM](https://github.com/mrdoob/three.js/search?q=JSM&type=Commits) initiative landed in `three` package. `JSM` files allows us to import loaders and other things from the examples folder. That's awesome but tree shaking method that we've used is breaking new `JSM` imports now.
 
 Here comes custom import name convetion that fixes this behavior and also provides more human-readable imports.
 

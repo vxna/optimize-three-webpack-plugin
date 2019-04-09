@@ -1,10 +1,12 @@
 const constants = require('./gl-constants')
 
 const GL_CONSTANTS_RE = /_?gl\.([A-Z0-9_]+)/g
-const GLSL_LITERALS_RE = /\/\* glsl \*\/\`((.*|\n|\r\n)*)\`/
+const GLSL_LITERALS_RE = /\/\* glsl \*\/`((.*|\n|\r\n)*)`/
 
 function optimize(loader, source, resource) {
-  if (process.env.NODE_ENV !== 'production') return source
+  if (process.env.NODE_ENV !== 'production') {
+    return source
+  }
 
   // https://github.com/mrdoob/three.js/blob/dev/rollup.config.js#L171-L182
   if (/\.glsl.js$/.test(resource)) {
@@ -22,9 +24,12 @@ function optimize(loader, source, resource) {
 
   // https://github.com/mrdoob/three.js/blob/dev/rollup.config.js#L144-L150
   source = source.replace(GL_CONSTANTS_RE, (match, p1) => {
-    if (p1 in constants) return constants[p1]
+    if (p1 in constants) {
+      return constants[p1]
+    }
 
     loader.emitWarning(new Error(`Unhandled GL Constant: ${p1}`))
+
     return match
   })
 
