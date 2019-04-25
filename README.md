@@ -6,6 +6,8 @@ A compat layer that enables tree shaking with JSM imports.
 
 ## Warning
 
+webpack >=4.0.0 and three >=0.103.0 required.
+
 This is possible with import name convention that I hope one day will be adopted in `three`.  
 I don't know if it works with TS and I am not going to support it on my own, PR welcome.
 
