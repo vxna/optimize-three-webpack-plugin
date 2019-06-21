@@ -1,7 +1,7 @@
 {
   "name": "@vxna/optimize-three-webpack-plugin",
   "version": "0.0.0-development",
-  "description": "A compat layer that enables tree shaking with JSM imports",
+  "description": "A compat layer that enables tree shaking with ESM imports",
   "author": "vxna",
   "license": "MIT",
   "main": "src/index.js",
@@ -18,7 +18,8 @@
     "node": ">= 8"
   },
   "scripts": {
-    "pretest": "yarn lint",
+    "aliases": "node utils/generate",
+    "pretest": "yarn lint && yarn aliases",
     "test": "yarn test:jest",
     "test:jest": "jest",
     "test:watch": "jest --watch",
@@ -29,15 +30,16 @@
   },
   "devDependencies": {
     "eslint": "^5.16.0",
-    "eslint-config-tamia": "^6.0.2",
-    "file-loader": "^3.0.1",
-    "husky": "^2.1.0",
-    "jest": "^24.7.1",
-    "lint-staged": "^8.1.5",
+    "eslint-config-tamia": "^6.2.1",
+    "file-loader": "^4.0.0",
+    "husky": "^2.4.1",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.2.1",
+    "listdirs": "^3.1.1",
     "memory-fs": "^0.4.1",
-    "prettier": "^1.17.0",
-    "three": "^0.104.0",
-    "webpack": "^4.30.0"
+    "prettier": "^1.18.2",
+    "three": "^0.105.2",
+    "webpack": "^4.35.0"
   },
   "eslintConfig": {
     "extends": "tamia"

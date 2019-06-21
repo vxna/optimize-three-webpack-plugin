@@ -6,18 +6,19 @@ A compat layer that enables tree shaking with JSM imports.
 
 ## Warning
 
-webpack >=4.0.0 and three >=0.103.0 required.
+`webpack@^4.0.0` and `three@^0.103.0` required.
 
 This is possible with import name convention that I hope one day will be adopted in `three`.  
 I don't know if it works with TS and I am not going to support it on my own, PR welcome.
 
 ## Import name convention
 
-In the past, tree shaking `three` was done at the userland with a workaround by aliasing `three` to `src/Three.js`. Recently, new [JSM](https://github.com/mrdoob/three.js/search?q=JSM&type=Commits) initiative landed in `three` package. `JSM` files allows us to import loaders and other things from the examples folder. That's awesome but tree shaking method that we've used is breaking new `JSM` imports now.
+In the past, tree shaking `three` was done at the userland with a workaround by aliasing `three` to `src/Three.js`. Since `three@0.103.0`, [JSM](https://threejs.org/docs/#manual/en/introduction/Import-via-modules) initiative landed in `three` package. `JSM` files allows us to import loaders and other things from the examples folder. That's awesome but tree shaking method that we've used is breaking new `JSM` imports now.
 
-Here comes custom import name convetion that fixes this behavior and also provides more human-readable imports.
+Here comes custom import name convetion that fixes this behavior and provides more human-readable imports.
 
-At the time of writing all available `JSM` imports are supported. You can see the full list [here](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/index.js#L14-L21).
+At the time of writing all available `JSM` imports are supported. You can see the full list [here](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/aliases.js).  
+`JSM` conversion is still ongoing, make sure you have latest `three` to use all aliases.
 
 ## Usage
 
@@ -34,17 +35,17 @@ module.exports = {
 Your code:
 
 ```js
-// lib imports
+// core
 import { WebGLRenderer } from 'three'
 // becomes now
 import { WebGLRenderer } from '@three/core'
 
-// jsm loaders imports
+// loaders
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 // becomes now
 import { GLTFLoader } from '@three/loaders/GLTFLoader'
 
-// jsm controls imports
+// controls
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 // becomes now
 import { OrbitControls } from '@three/controls/OrbitControls'
