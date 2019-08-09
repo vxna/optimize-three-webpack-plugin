@@ -14,6 +14,7 @@ const modules = {
   '@three/math': 'three/examples/jsm/math',
   '@three/misc': 'three/examples/jsm/misc',
   '@three/modifiers': 'three/examples/jsm/modifiers',
+  '@three/nodes': 'three/examples/jsm/nodes',
   '@three/objects': 'three/examples/jsm/objects',
   '@three/pmrem': 'three/examples/jsm/pmrem',
   '@three/postprocessing': 'three/examples/jsm/postprocessing',
