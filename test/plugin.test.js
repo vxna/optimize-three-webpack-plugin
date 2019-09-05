@@ -12,7 +12,7 @@ const getConfig = (config = {}) => {
 }
 
 const CORE_MAX_SIZE = 9279 * 2 // as for three@0.103.0
-const JSM_MAX_SIZE = 30502 * 2 // as for three@0.103.0
+const EXAMPLES_MAX_SIZE = 30502 * 2 // as for three@0.103.0
 
 test('plugin: core imports', async () => {
   const config = getConfig()
@@ -26,14 +26,14 @@ test('plugin: core imports', async () => {
   expect(emitted).toBeTruthy()
 })
 
-test('plugin: jsm imports', async () => {
+test('plugin: examples imports', async () => {
   const config = getConfig()
-  const stats = await compiler('jsm.js', config)
+  const stats = await compiler('examples.js', config)
 
   const { errors, assets } = stats.toJson()
   const { size, emitted } = assets.find(({ name }) => /main\.js$/.test(name))
 
-  expect(size).toBeLessThan(JSM_MAX_SIZE)
+  expect(size).toBeLessThan(EXAMPLES_MAX_SIZE)
   expect(errors).toHaveLength(0)
   expect(emitted).toBeTruthy()
 })

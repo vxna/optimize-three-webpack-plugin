@@ -6,42 +6,19 @@ A compat layer that enables tree shaking and human-readable imports.
 
 ## Warning
 
+1. `webpack@>=4.0.0` and `three@>=0.103.0` are hard requirements.
+
+2. I am not sure if it works with TypeScript and I have no resources to support it on my own.
+
+3. Examples ESM conversion seems finished, so this package is in the maintenance mode.
+
 <!--
-`three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 classes in core. If you have to [support old browsers](https://caniuse.com/#feat=es6-class),
-you must transpile it back to ES5.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      // this might be your default settings
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
-      },
-      // here we forcing babel to transpile three
-      {
-        include: /three/,
-        loader: 'babel-loader'
-      }
-    ]
-  }
-}
-```
+4. `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 classes in the core. If you have to [support older browsers](https://caniuse.com/#feat=es6-class), you must transpile it.
 -->
-
-`webpack@>=4.0.0` and `three@>=0.103.0` required.
-
-I don't know if it works with TypeScript and I am not going to support it on my own, PR welcome.
-
-AFAIK, examples ESM conversion is finished, so this package is in the maintenance mode.
 
 ## Usage
 
-**webpack.config.js**
+Default webpack configuration:
 
 ```js
 const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
@@ -51,15 +28,38 @@ module.exports = {
 }
 ```
 
-**Your code**:
+<!--
+Assuming that you're using [Babel](https://github.com/babel/babel-loader), this is possible configuration to use `three@>=0.109.0` with older browsers:
 
 ```js
-// core
+const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        include: /three/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    ]
+  },
+  plugins: [new OptimizeThreePlugin()]
+}
+```
+-->
+
+Your code:
+
+```js
+// core imports
 import { WebGLRenderer } from 'three'
 // becomes now
 import { WebGLRenderer } from '@three/core'
 
-// loaders
+// examples imports
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 // becomes now
 import { GLTFLoader } from '@three/loaders/GLTFLoader'
@@ -77,7 +77,7 @@ At the time of writing all available ESM examples are [supported](https://github
 
 Using basic https://threejs.org/examples/#webgl_geometry_cube example, results are:
 
-before:
+Before:
 
 ```
 > ls build -ghs
@@ -90,7 +90,7 @@ total 569K
 126 kB
 ```
 
-after:
+After:
 
 ```
 > ls build -ghs
