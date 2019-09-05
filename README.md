@@ -65,11 +65,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { GLTFLoader } from '@three/loaders/GLTFLoader'
 ```
 
-## Import name convention
+## Custom module aliases
 
 In the past, one of possible ways to tree shake `three` was to use `"sideEffects": false` flag in `webpack` and alias `three` to `src/Three.js` instead of default `build/three.module.js`. Since `three@0.103.0`, ESM [support for examples](https://threejs.org/docs/#manual/en/introduction/Import-via-modules) landed in `three` package. This change allows us to import loaders and other things from the examples folder with ease.
 
-The problem was that tree shaking method we've used isn't compatible with ESM examples. I am not sure if introducing new import names is actually the best solution for everyone, but at least it works for me and gives desired results.
+The problem was that tree shaking method we've used isn't compatible with ESM examples. I am not sure if using custom module aliases is actually the best solution for everyone, but at least it works for me and gives desired results.
 
 At the time of writing all available ESM examples are [supported](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/aliases.js).
 
