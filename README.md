@@ -2,14 +2,40 @@
 
 [![Build Status](https://travis-ci.com/vxna/optimize-three-webpack-plugin.svg)](https://travis-ci.com/vxna/optimize-three-webpack-plugin) [![npm](https://img.shields.io/npm/v/@vxna/optimize-three-webpack-plugin.svg)](https://www.npmjs.com/package/@vxna/optimize-three-webpack-plugin)
 
-A compat layer that enables tree shaking with JSM imports.
+A compat layer that enables tree shaking and human-readable imports.
 
 ## Warning
 
-`webpack@^4.0.0` and `three@^0.103.0` required.
+`three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 classes in core. If you have to [support old browsers](https://caniuse.com/#feat=es6-class),
+you must transpile it back to ES5.
 
-This is possible with import name convention that I hope one day will be adopted in `three`.  
-I don't know if it works with TS and I am not going to support it on my own, PR welcome.
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      // this might be your default settings
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      // here we forcing babel to transpile three
+      {
+        include: /three/,
+        loader: 'babel-loader'
+      }
+    ]
+  }
+}
+```
+
+`webpack@>=4.0.0` and `three@>=0.103.0` required.
+
+I don't know if it works with TypeScript and I am not going to support it on my own, PR welcome.
+
+AFAIK, examples ESM conversion is finished, so this package is in the maintenance mode.
 
 ## Usage
 
@@ -23,7 +49,7 @@ module.exports = {
 }
 ```
 
-Your code:
+**Your code**:
 
 ```js
 // core
@@ -35,20 +61,15 @@ import { WebGLRenderer } from '@three/core'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 // becomes now
 import { GLTFLoader } from '@three/loaders/GLTFLoader'
-
-// controls
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-// becomes now
-import { OrbitControls } from '@three/controls/OrbitControls'
 ```
 
 ## Import name convention
 
-In the past, tree shaking `three` was done at the userland with a workaround by aliasing `three` to `src/Three.js`. Since `three@0.103.0`, [JSM](https://threejs.org/docs/#manual/en/introduction/Import-via-modules) initiative landed in `three` package. `JSM` files allows us to import loaders and other things from the examples folder. That's awesome but tree shaking method that we've used is breaking new `JSM` imports now.
+In the past, one of possible ways to tree shake `three` was to use `"sideEffects": false` flag in `webpack` and alias `three` to `src/Three.js` instead of default `build/three.module.js`. Since `three@0.103.0`, ESM [support for examples](https://threejs.org/docs/#manual/en/introduction/Import-via-modules) landed in `three` package. This change allows us to import loaders and other things from the examples folder with ease.
 
-Here comes custom import name convetion that fixes this behavior and provides more human-readable imports.
+The problem was that tree shaking method we've used isn't compatible with ESM examples. I am not sure if introducing new import names is actually the best solution for everyone, but at least it works for me and gives desired results.
 
-At the time of writing all available `JSM` imports are supported. You can see the full list [here](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/aliases.js).
+At the time of writing all available ESM examples are [supported](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/aliases.js).
 
 ## Rationale
 
