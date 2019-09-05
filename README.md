@@ -6,6 +6,7 @@ A compat layer that enables tree shaking and human-readable imports.
 
 ## Warning
 
+<!--
 `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 classes in core. If you have to [support old browsers](https://caniuse.com/#feat=es6-class),
 you must transpile it back to ES5.
 
@@ -30,6 +31,7 @@ module.exports = {
   }
 }
 ```
+-->
 
 `webpack@>=4.0.0` and `three@>=0.103.0` required.
 
