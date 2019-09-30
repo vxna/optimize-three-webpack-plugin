@@ -12,9 +12,7 @@ A compat layer that enables tree shaking and human-readable imports.
 
 3. Examples ESM conversion seems finished, so this package is in the maintenance mode.
 
-<!--
-4. `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 classes in the core. If you have to [support older browsers](https://caniuse.com/#feat=es6-class), you must transpile it.
--->
+4. `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 classes in the core. If you have to [support older browsers](https://caniuse.com/#feat=es6-class), you must [transpile](#older-browsers) it.
 
 ## Usage
 
@@ -27,29 +25,6 @@ module.exports = {
   plugins: [new OptimizeThreePlugin()]
 }
 ```
-
-<!--
-Assuming that you're using [Babel](https://github.com/babel/babel-loader), this is possible configuration to use `three@>=0.109.0` with older browsers:
-
-```js
-const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
-
-module.exports = {
-  module: {
-    rules: [
-      {
-        include: /three/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env']
-        }
-      }
-    ]
-  },
-  plugins: [new OptimizeThreePlugin()]
-}
-```
--->
 
 Your code:
 
@@ -80,27 +55,48 @@ Using basic https://threejs.org/examples/#webgl_geometry_cube example, results a
 Before:
 
 ```
-> ls build -ghs
+$ ls build -ghs
 total 569K
 500K -rw-r--r-- 1 None 497K Dec 15 09:13 0.ceabf32b276fff4b1659.js
- 68K -rw-r--r-- 1 None  67K Dec 15 09:13 crate.da499b8537.gif
-1.0K -rw-r--r-- 1 None  295 Dec 15 09:13 index.html
 
-> gzip-size build\0.ceabf32b276fff4b1659.js
+$ gzip-size build\0.ceabf32b276fff4b1659.js
 126 kB
 ```
 
 After:
 
 ```
-> ls build -ghs
+$ ls build -ghs
 total 381K
 312K -rw-r--r-- 1 None 312K Dec 15 09:15 0.8e10d7ecdf3c9cb6f57f.js
- 68K -rw-r--r-- 1 None  67K Dec 15 09:15 crate.da499b8537.gif
-1.0K -rw-r--r-- 1 None  295 Dec 15 09:15 index.html
 
-> gzip-size build\0.8e10d7ecdf3c9cb6f57f.js
+$ gzip-size build\0.8e10d7ecdf3c9cb6f57f.js
 78.7 kB
+```
+
+## Older browsers
+
+Assuming that you're using [Babel](https://github.com/babel/babel-loader), this is the one of possible ways to use `three@>=0.109.0` with older browsers:
+
+```js
+const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        include: /three/,
+        loader: 'babel-loader'
+      }
+    ]
+  },
+  plugins: [new OptimizeThreePlugin()]
+}
 ```
 
 ## License

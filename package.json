@@ -29,17 +29,17 @@
     "format": "prettier --write **/*.{js,md}"
   },
   "devDependencies": {
-    "eslint": "^6.3.0",
+    "eslint": "^6.5.0",
     "eslint-config-tamia": "^7.0.1",
     "file-loader": "^4.2.0",
-    "husky": "^3.0.5",
+    "husky": "^3.0.7",
     "jest": "^24.9.0",
-    "lint-staged": "^9.2.5",
+    "lint-staged": "^9.4.0",
     "listdirs": "^3.1.1",
     "memory-fs": "^0.4.1",
     "prettier": "^1.18.2",
-    "three": "^0.108.0",
-    "webpack": "^4.39.3"
+    "three": "^0.109.0",
+    "webpack": "^4.41.0"
   },
   "eslintConfig": {
     "extends": "tamia"
