@@ -6,8 +6,9 @@ module.exports = {
         releaseRules: [
           { breaking: true, release: 'major' },
           { type: 'breaking', release: 'major' },
-          { type: 'feat', release: 'minor' },
-          { type: 'fix', release: 'patch' }
+          { type: 'new', release: 'minor' },
+          { type: 'fix', release: 'patch' },
+          { type: 'upd', release: 'patch' }
         ]
       }
     ],
