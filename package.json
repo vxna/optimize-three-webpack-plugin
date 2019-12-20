@@ -5,6 +5,9 @@
   "author": "vxna",
   "license": "MIT",
   "main": "src/index.js",
+  "files": [
+    "src/**/*.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/vxna/optimize-three-webpack-plugin.git"

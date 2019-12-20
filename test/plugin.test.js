@@ -1,3 +1,4 @@
+/* eslint-env jest */
 const compiler = require('./helpers/compiler')
 const OptimizeThreePlugin = require('../src')
 
