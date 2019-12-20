@@ -1,9 +1,5 @@
 node_modules
-coverage
 .vscode/
-.eslintcache
 .DS_Store
 Thumbs.db
 *.log
-Changelog.md
-*.stats.json

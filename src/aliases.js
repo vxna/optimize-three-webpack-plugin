@@ -21,7 +21,8 @@ const modules = {
   '@three/renderers': 'three/examples/jsm/renderers',
   '@three/shaders': 'three/examples/jsm/shaders',
   '@three/utils': 'three/examples/jsm/utils',
-  '@three/vr': 'three/examples/jsm/vr'
+  '@three/vr': 'three/examples/jsm/vr',
+  '@three/webxr': 'three/examples/jsm/webxr'
 }
 
 const internals = {
