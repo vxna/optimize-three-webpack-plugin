@@ -49,11 +49,7 @@
     "extends": [
       "standard",
       "prettier"
-    ],
-    "rules": {
-      "space-before-function-paren": "off",
-      "no-var": "error"
-    }
+    ]
   },
   "prettier": {
     "singleQuote": true,
