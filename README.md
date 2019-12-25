@@ -6,15 +6,13 @@ A compat layer that enables tree shaking and human-readable imports.
 
 ## Warning
 
-1. `webpack@>=4.0.0` and `three@>=0.103.0` are hard requirements.
+1. `webpack@>=4.0.0` and `three@>=0.112.0` are hard requirements.
 
-2. I am not sure if it works with TypeScript and I have no resources to support it on my own.
+2. `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 classes in core. If you have to [support older browsers](https://caniuse.com/#feat=es6-class), you must [transpile it](#older-browsers).
 
-3. Examples ESM conversion seems finished, so this package is in the maintenance mode.
+3. I am not sure if it works with TypeScript and I have no resources to support it on my own.
 
-<!--
-4. `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 classes in the core. If you have to [support older browsers](https://caniuse.com/#feat=es6-class), you must transpile it.
--->
+4. Examples ESM conversion seems finished, so this package is in the maintenance mode.
 
 ## Usage
 
@@ -27,29 +25,6 @@ module.exports = {
   plugins: [new OptimizeThreePlugin()]
 }
 ```
-
-<!--
-Assuming that you're using [Babel](https://github.com/babel/babel-loader), this is possible configuration to use `three@>=0.109.0` with older browsers:
-
-```js
-const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
-
-module.exports = {
-  module: {
-    rules: [
-      {
-        include: /three/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env']
-        }
-      }
-    ]
-  },
-  plugins: [new OptimizeThreePlugin()]
-}
-```
--->
 
 Your code:
 
@@ -101,6 +76,29 @@ total 381K
 
 > gzip-size build\0.8e10d7ecdf3c9cb6f57f.js
 78.7 kB
+```
+
+## Older browsers
+
+Assuming that you're using [Babel](https://github.com/babel/babel-loader), this is possible configuration to make `three@>=0.109.0` work with older browsers:
+
+```js
+const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        include: /three/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    ]
+  },
+  plugins: [new OptimizeThreePlugin()]
+}
 ```
 
 ## License
