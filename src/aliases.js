@@ -6,6 +6,7 @@ const modules = {
   '@three/effects': 'three/examples/jsm/effects',
   '@three/exporters': 'three/examples/jsm/exporters',
   '@three/geometries': 'three/examples/jsm/geometries',
+  '@three/helpers': 'three/examples/jsm/helpers',
   '@three/interactive': 'three/examples/jsm/interactive',
   '@three/libs': 'three/examples/jsm/libs',
   '@three/lights': 'three/examples/jsm/lights',
@@ -16,12 +17,10 @@ const modules = {
   '@three/modifiers': 'three/examples/jsm/modifiers',
   '@three/nodes': 'three/examples/jsm/nodes',
   '@three/objects': 'three/examples/jsm/objects',
-  '@three/pmrem': 'three/examples/jsm/pmrem',
   '@three/postprocessing': 'three/examples/jsm/postprocessing',
   '@three/renderers': 'three/examples/jsm/renderers',
   '@three/shaders': 'three/examples/jsm/shaders',
   '@three/utils': 'three/examples/jsm/utils',
-  '@three/vr': 'three/examples/jsm/vr',
   '@three/webxr': 'three/examples/jsm/webxr'
 }
 

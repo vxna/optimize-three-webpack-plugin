@@ -12,10 +12,11 @@ const getConfig = (config = {}) => {
   return { ...defaults, ...config }
 }
 
-const CORE_MAX_SIZE = 9279 * 2 // as for three@0.103.0
-const EXAMPLES_MAX_SIZE = 30502 * 2 // as for three@0.103.0
+// as of three@0.112.0
+const CORE_MAX_SIZE = 9292 * 2
+const EXAMPLES_MAX_SIZE = 30954 * 2
 
-test('plugin: core imports', async () => {
+test('plugin: core', async () => {
   const config = getConfig()
   const stats = await compiler('core.js', config)
 
@@ -27,7 +28,7 @@ test('plugin: core imports', async () => {
   expect(emitted).toBeTruthy()
 })
 
-test('plugin: examples imports', async () => {
+test('plugin: examples', async () => {
   const config = getConfig()
   const stats = await compiler('examples.js', config)
 
