@@ -1,3 +1,3 @@
 import { Color } from '@three/core'
 
-new Color()
+export const color = new Color()
