@@ -1,10 +1,20 @@
 const fs = require('fs')
 const path = require('path')
 
+// FIXME: remove after node 10 eol
+// https://github.com/feross/fromentries/blob/master/index.js
+const fromEntries = (iterable) => {
+  return [...iterable].reduce((obj, [key, val]) => {
+    obj[key] = val
+    return obj
+  }, {})
+}
+
 const generateAliases = () => {
+  // seems like it wont work everywhere?
   const jsm = path.resolve(__dirname, '../node_modules/three/examples/jsm')
 
-  return Object.fromEntries(
+  return fromEntries(
     fs
       .readdirSync(jsm)
       .filter((name) => fs.statSync(path.join(jsm, name)).isDirectory())
