@@ -1,19 +1,30 @@
 const path = require('path')
-const MemoryFS = require('memory-fs')
+
+const { createFsFromVolume, Volume } = require('memfs')
 const webpack = require('webpack')
 
-module.exports = function(fixture, config) {
+module.exports = (fixture, config) => {
   config = {
     mode: config.mode || 'development',
     optimization: config.optimization || {},
-    context: config.context || path.resolve(process.cwd(), 'test/fixtures'),
-    entry: config.entry || `./${fixture}`,
-    plugins: config.plugins || []
+    context: config.context || path.resolve(__dirname, '../fixtures'),
+    entry: config.entry || path.resolve(__dirname, '../fixtures', fixture),
+    output: {
+      path: path.resolve(__dirname, '../outputs'),
+      filename: '[name].js',
+      chunkFilename: '[name].chunk.js',
+    },
+    ...config,
   }
 
   const compiler = webpack(config)
 
-  compiler.outputFileSystem = new MemoryFS()
+  if (!config.outputFileSystem) {
+    const outputFileSystem = createFsFromVolume(new Volume())
+    outputFileSystem.join = path.join.bind(path)
+
+    compiler.outputFileSystem = outputFileSystem
+  }
 
   return new Promise((resolve, reject) =>
     compiler.run((err, stats) => {

@@ -1,16 +1,5 @@
-/* eslint-env jest */
 const compiler = require('./helpers/compiler')
-const OptimizeThreePlugin = require('../src')
-
-const getConfig = (config = {}) => {
-  const defaults = {
-    mode: 'production',
-    optimization: { runtimeChunk: true },
-    plugins: [new OptimizeThreePlugin()]
-  }
-
-  return { ...defaults, ...config }
-}
+const getConfig = require('./helpers/config')
 
 // as of three@0.112.0
 const CORE_MAX_SIZE = 9292 * 2
