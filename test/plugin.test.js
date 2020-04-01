@@ -1,30 +1,30 @@
 const compiler = require('./helpers/compiler')
 const getConfig = require('./helpers/config')
 
-// as of three@0.112.0
-const CORE_MAX_SIZE = 9292 * 2
-const EXAMPLES_MAX_SIZE = 30954 * 2
+// as of three@0.115.0
+const CORE_SIZE = 9759
+const EXAMPLES_SIZE = 198253
 
-test('plugin: core', async () => {
+test('plugin: core import', async () => {
   const config = getConfig()
   const stats = await compiler('core.js', config)
 
   const { errors, assets } = stats.toJson()
-  const { size, emitted } = assets.find(({ name }) => /main\.js$/.test(name))
+  const { size, emitted } = assets.find(({ name }) => name === 'main.chunk.js')
 
-  expect(size).toBeLessThan(CORE_MAX_SIZE)
+  expect(size).toBe(CORE_SIZE)
   expect(errors).toHaveLength(0)
   expect(emitted).toBeTruthy()
 })
 
-test('plugin: examples', async () => {
+test('plugin: examples import', async () => {
   const config = getConfig()
   const stats = await compiler('examples.js', config)
 
   const { errors, assets } = stats.toJson()
-  const { size, emitted } = assets.find(({ name }) => /main\.js$/.test(name))
+  const { size, emitted } = assets.find(({ name }) => name === 'main.chunk.js')
 
-  expect(size).toBeLessThan(EXAMPLES_MAX_SIZE)
+  expect(size).toBe(EXAMPLES_SIZE)
   expect(errors).toHaveLength(0)
   expect(emitted).toBeTruthy()
 })

@@ -597,4 +597,4 @@ const WEBGL_CONSTANTS = {
   MAX_TEXTURE_MAX_ANISOTROPY_EXT: 0x84ff,
 }
 
-module.exports = { WEBGL_CONSTANTS }
+module.exports = WEBGL_CONSTANTS

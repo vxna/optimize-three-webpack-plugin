@@ -1,15 +1,15 @@
-const { WEBGL_CONSTANTS } = require('./gl-constants')
+const WEBGL_CONSTANTS = require('./webgl-constants')
 
 const WEBGL_CONSTANTS_RE = /_?gl\.([A-Z0-9_]+)/g
 const GLSL_LITERALS_RE = /\/\* glsl \*\/`((.*|\n|\r\n)*)`/
 
-const optimize = (loader, source, resource) => {
+// https://github.com/mrdoob/three.js/blob/master/utils/build/rollup.config.js
+const optimize = (source, resourcePath) => {
   if (process.env.NODE_ENV !== 'production') {
     return source
   }
 
-  // https://github.com/mrdoob/three.js/blob/dev/rollup.config.js
-  if (/\.glsl.js$/.test(resource)) {
+  if (/\.glsl.js$/.test(resourcePath)) {
     source = source.replace(GLSL_LITERALS_RE, (match, p1) => {
       return JSON.stringify(
         p1
@@ -22,13 +22,14 @@ const optimize = (loader, source, resource) => {
     })
   }
 
-  // https://github.com/mrdoob/three.js/blob/dev/rollup.config.js
   source = source.replace(WEBGL_CONSTANTS_RE, (match, p1) => {
     if (p1 in WEBGL_CONSTANTS) {
       return WEBGL_CONSTANTS[p1]
     }
 
-    loader.emitWarning(new Error(`Unhandled GL Constant: ${p1}`))
+    if (typeof jest !== 'undefined') {
+      console.log(`Unhandled WebGL constant: ${p1}`)
+    }
 
     return match
   })
@@ -38,9 +39,9 @@ const optimize = (loader, source, resource) => {
 
 module.exports = function (source) {
   const callback = this.async()
-  const resource = this.resourcePath
+  const resourcePath = this.resourcePath
 
   this.cacheable()
 
-  callback(null, optimize(this, source, resource))
+  callback(null, optimize(source, resourcePath))
 }

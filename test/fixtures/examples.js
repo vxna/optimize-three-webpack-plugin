@@ -1,3 +1,3 @@
-import { OrbitControls } from '@three/controls/OrbitControls'
+import { GLTFLoader } from '@three/loaders/GLTFLoader'
 
-export const orbitControls = new OrbitControls()
+export const loader = new GLTFLoader()
