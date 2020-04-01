@@ -2,6 +2,7 @@ const modules = {
   '@three/animation': 'three/examples/jsm/animation',
   '@three/cameras': 'three/examples/jsm/cameras',
   '@three/controls': 'three/examples/jsm/controls',
+  '@three/csm': 'three/examples/jsm/csm',
   '@three/curves': 'three/examples/jsm/curves',
   '@three/effects': 'three/examples/jsm/effects',
   '@three/exporters': 'three/examples/jsm/exporters',
@@ -17,11 +18,14 @@ const modules = {
   '@three/modifiers': 'three/examples/jsm/modifiers',
   '@three/nodes': 'three/examples/jsm/nodes',
   '@three/objects': 'three/examples/jsm/objects',
+  '@three/offscreen': 'three/examples/jsm/offscreen',
+  '@three/physics': 'three/examples/jsm/physics',
   '@three/postprocessing': 'three/examples/jsm/postprocessing',
   '@three/renderers': 'three/examples/jsm/renderers',
   '@three/shaders': 'three/examples/jsm/shaders',
+  '@three/textures': 'three/examples/jsm/textures',
   '@three/utils': 'three/examples/jsm/utils',
-  '@three/webxr': 'three/examples/jsm/webxr'
+  '@three/webxr': 'three/examples/jsm/webxr',
 }
 
 const internals = {
@@ -29,7 +33,6 @@ const internals = {
   '@three/examples': 'three/examples',
   '@three/jsm': 'three/examples/jsm',
   '@three/js': 'three/examples/js',
-  '../../../build/three.module.js': '@three/core'
+  '../../../build/three.module.js': '@three/core',
 }
-
 module.exports = { ...modules, ...internals }

@@ -1,6 +1,6 @@
 // https://github.com/AnalyticalGraphicsInc/cesium/blob/master/Source/Core/WebGLConstants.js
 
-module.exports = {
+const WEBGL_CONSTANTS = {
   DEPTH_BUFFER_BIT: 0x00000100,
   STENCIL_BUFFER_BIT: 0x00000400,
   COLOR_BUFFER_BIT: 0x00004000,
@@ -594,5 +594,7 @@ module.exports = {
   TEXTURE_IMMUTABLE_LEVELS: 0x82df,
 
   // Extensions
-  MAX_TEXTURE_MAX_ANISOTROPY_EXT: 0x84ff
+  MAX_TEXTURE_MAX_ANISOTROPY_EXT: 0x84ff,
 }
+
+module.exports = { WEBGL_CONSTANTS }
