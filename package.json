@@ -21,7 +21,6 @@
     "node": ">= 10"
   },
   "scripts": {
-    "generate": "node utils/generate",
     "pretest": "yarn lint",
     "lint": "eslint src/**/*.js --format codeframe --fix",
     "test": "jest",
@@ -30,26 +29,30 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-node": "^11.0.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "file-loader": "^5.0.2",
-    "husky": "^4.2.1",
-    "jest": "^25.1.0",
-    "lint-staged": "^10.0.7",
+    "file-loader": "^6.0.0",
+    "husky": "^4.2.3",
+    "jest": "^25.2.4",
+    "lint-staged": "^10.1.1",
+    "memfs": "^3.1.2",
     "memory-fs": "^0.5.0",
-    "prettier": "^1.19.1",
-    "three": "^0.113.2",
-    "webpack": "^4.41.5"
+    "prettier": "^2.0.2",
+    "three": "^0.115.0",
+    "webpack": "^4.42.1"
   },
   "eslintConfig": {
     "extends": [
       "standard",
       "prettier"
-    ]
+    ],
+    "env": {
+      "jest": true
+    }
   },
   "prettier": {
     "singleQuote": true,
