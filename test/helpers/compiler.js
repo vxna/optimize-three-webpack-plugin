@@ -10,7 +10,7 @@ module.exports = (fixture, config) => {
     context: config.context || path.resolve(__dirname, '../fixtures'),
     entry: config.entry || path.resolve(__dirname, '../fixtures', fixture),
     output: {
-      path: path.resolve(__dirname, '../outputs'),
+      path: path.resolve(__dirname, '../output'),
       filename: '[name].js',
       chunkFilename: '[name].chunk.js',
     },
