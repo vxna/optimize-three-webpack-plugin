@@ -3,7 +3,7 @@ const getConfig = require('./helpers/config')
 
 // as of three@0.116.0
 const CORE_SIZE = 9817
-const EXAMPLES_SIZE = 200706
+const EXAMPLES_SIZE = 202325
 
 test('plugin: core import', async () => {
   const config = getConfig()
