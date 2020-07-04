@@ -10,17 +10,17 @@ A compat layer that enables tree shaking and human-readable imports.
 
 2. It doesn't work with [react-three-fiber](https://github.com/react-spring/react-three-fiber), PR welcome.
 
-3. I am not sure if it work with TypeScript, PR welcome.
+3. I am not sure if it works with TypeScript, PR welcome.
 
 4. Examples ESM conversion seems finished, so this package is in the maintenance mode.
 
-5. `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 classes in core. If you have to [support older browsers](https://caniuse.com/#feat=es6-class), you must [transpile it](#older-browsers).
+5. `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 in the core. If you have to [support older browsers](https://caniuse.com/#feat=es6-class), you must [transpile it](#older-browsers).
 
 ## Usage
 
 Aliases always [generated](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/index.js) at the build time by plugin itself so you're free to use anything that's inside your local [examples](https://github.com/mrdoob/three.js/tree/master/examples/jsm) folder with just omitting the `examples/jsm` part off your import.
 
-Your `webpack.config.js`:
+`webpack.config.js`:
 
 ```js
 const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
@@ -48,7 +48,7 @@ import { GLTFLoader } from '@three/loaders/GLTFLoader'
 
 In the past, one of possible ways to tree shake `three` was to use `"sideEffects": false` flag in `webpack` and alias `three` to `src/Three.js` instead of `build/three.module.js`. Since `three@0.103.0`, ESM [support for examples](https://threejs.org/docs/#manual/en/introduction/Import-via-modules) landed in `three` package. This change allows us to import loaders and other things from the examples folder with ease.
 
-The problem was that tree shaking method we've used isn't compatible with ESM examples. I am not sure if using custom module aliases is actually the best solution for everyone, but at least it works for me and gives desired results.
+The problem is that tree shaking method we've used isn't compatible with ESM examples. I am not sure if using custom module aliases is actually the best solution for everyone, but at least it works for me and gives desired results.
 
 ## Rationale
 
@@ -82,20 +82,22 @@ total 381K
 
 ## Older browsers
 
-Assuming that you're using [Babel](https://github.com/babel/babel-loader), this is possible configuration to make `three@>=0.109.0` work with older browsers:
+Assuming that you're already using [Babel](https://github.com/babel/babel-loader), this is one of many possible ways to make `three@>=0.109.0` work in older browsers:
+
+`webpack.config.js`:
 
 ```js
+const path = require('path')
 const OptimizeThreePlugin = require('@vxna/optimize-three-webpack-plugin')
+
+const three = path.join(path.dirname(require.resolve('three')), '..')
 
 module.exports = {
   module: {
     rules: [
       {
-        include: /three/,
+        include: three,
         loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env'],
-        },
       },
     ],
   },

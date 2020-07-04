@@ -1,9 +1,9 @@
 const compiler = require('./helpers/compiler')
 const getConfig = require('./helpers/config')
 
-// as of three@0.117.1
-const CORE_SIZE = 9817
-const EXAMPLES_SIZE = 202319
+// as of three@0.118.3
+const CORE_SIZE = 10016
+const EXAMPLES_SIZE = 208758
 
 test('plugin: core import', async () => {
   const config = getConfig()
