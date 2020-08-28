@@ -1,6 +1,6 @@
 # @vxna/optimize-three-webpack-plugin
 
-[![Build Status](https://github.com/vxna/optimize-three-webpack-plugin/workflows/test/badge.svg)](https://github.com/vxna/optimize-three-webpack-plugin/actions?query=workflow%3Atest+branch%3Amaster) [![npm](https://img.shields.io/npm/v/@vxna/optimize-three-webpack-plugin.svg)](https://www.npmjs.com/package/@vxna/optimize-three-webpack-plugin)
+[![Build Status](https://github.com/vxna/optimize-three-webpack-plugin/workflows/CI/badge.svg)](https://github.com/vxna/optimize-three-webpack-plugin/actions?query=workflow%3ACI+branch%3Amaster) [![npm](https://img.shields.io/npm/v/@vxna/optimize-three-webpack-plugin.svg)](https://www.npmjs.com/package/@vxna/optimize-three-webpack-plugin)
 
 A compat layer that enables tree shaking and human-readable imports.
 
