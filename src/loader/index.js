@@ -1,9 +1,9 @@
 const WEBGL_CONSTANTS = require('./webgl-constants')
 
 const WEBGL_CONSTANTS_RE = /_?gl\.([A-Z0-9_]+)/g
-const GLSL_LITERALS_RE = /\/\* glsl \*\/`((.*|\n|\r\n)*)`/
+const GLSL_LITERALS_RE = /\/\* glsl \*\/`(.*?)`/gs
 
-// https://github.com/mrdoob/three.js/blob/master/utils/build/rollup.config.js
+// https://github.com/mrdoob/three.js/blob/dev/utils/build/rollup.config.js
 const optimize = (source, resourcePath) => {
   if (process.env.NODE_ENV !== 'production') {
     return source
@@ -27,9 +27,7 @@ const optimize = (source, resourcePath) => {
       return WEBGL_CONSTANTS[p1]
     }
 
-    if (typeof jest !== 'undefined') {
-      console.log(`Unhandled WebGL constant: ${p1}`)
-    }
+    console.log(`Unhandled WebGL constant: ${p1}`)
 
     return match
   })

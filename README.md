@@ -6,19 +6,15 @@ A compat layer that enables tree shaking and human-readable imports.
 
 ## Warning
 
-1. `webpack@>=4.0.0` and `three@>=0.103.0` required.
+1. `webpack@>=5` and `three@>=0.128.0` **required**.
 
-2. It doesn't work with [react-three-fiber](https://github.com/react-spring/react-three-fiber), PR welcome.
+2. I am not sure if it works with TypeScript or [react-three-fiber](https://github.com/react-spring/react-three-fiber), PR welcome.
 
-3. I am not sure if it works with TypeScript, PR welcome.
-
-4. Examples ESM conversion seems finished, so this package is in the maintenance mode.
-
-5. `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 in the core. If you have to [support older browsers](https://caniuse.com/#feat=es6-class), you must [transpile it](#older-browsers).
+3. `three@0.109.0` [introduced](https://github.com/mrdoob/three.js/pull/17276) ES6 in the core. If you have to [support older browsers](https://caniuse.com/#feat=es6-class), you must [transpile it](#older-browsers).
 
 ## Usage
 
-Aliases always [generated](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/index.js) at the build time by plugin itself so you're free to use anything that's inside your local [examples](https://github.com/mrdoob/three.js/tree/master/examples/jsm) folder with just omitting the `examples/jsm` part off your import.
+Aliases always [generated](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/index.js) at the build time by plugin itself so you're free to use anything that's inside your local [examples/jsm](https://github.com/mrdoob/three.js/tree/master/examples/jsm) folder with just omitting the `examples/jsm` part off your import.
 
 `webpack.config.js`:
 
@@ -35,20 +31,10 @@ Your code:
 ```js
 // core import
 import { WebGLRenderer } from 'three'
-// becomes now
-import { WebGLRenderer } from '@three/core'
 
 // examples import
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-// becomes now
 import { GLTFLoader } from '@three/loaders/GLTFLoader'
 ```
-
-## Custom module aliases
-
-In the past, one of possible ways to tree shake `three` was to use `"sideEffects": false` flag in `webpack` and alias `three` to `src/Three.js` instead of `build/three.module.js`. Since `three@0.103.0`, ESM [support for examples](https://threejs.org/docs/#manual/en/introduction/Import-via-modules) landed in `three` package. This change allows us to import loaders and other things from the examples folder with ease.
-
-The problem is that tree shaking method we've used isn't compatible with ESM examples. I am not sure if using custom module aliases is actually the best solution for everyone, but at least it works for me and gives desired results.
 
 ## Rationale
 
@@ -97,7 +83,7 @@ module.exports = {
     rules: [
       {
         include: three,
-        loader: 'babel-loader',
+        user: 'babel-loader',
       },
     ],
   },
