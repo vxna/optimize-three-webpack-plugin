@@ -83,7 +83,7 @@ module.exports = {
     rules: [
       {
         include: three,
-        user: 'babel-loader',
+        use: 'babel-loader',
       },
     ],
   },
