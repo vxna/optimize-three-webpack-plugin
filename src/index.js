@@ -1,26 +1,15 @@
 const fs = require('fs')
 const path = require('path')
 
-// FIXME: remove after node 10 eol
-// https://github.com/feross/fromentries/blob/master/index.js
-const fromEntries = (iterable) => {
-  return [...iterable].reduce((obj, [key, val]) => {
-    obj[key] = val
-    return obj
-  }, {})
-}
-
 const three = path.join(path.dirname(require.resolve('three')), '..')
 const examples = path.join(three, 'examples', 'jsm')
 
-const generateAliases = () => {
-  return fromEntries(
-    fs
-      .readdirSync(examples)
-      .filter((name) => fs.statSync(path.join(examples, name)).isDirectory())
-      .map((name) => [[`@three/${name}`], `three/examples/jsm/${name}`])
-  )
-}
+const aliases = Object.fromEntries(
+  fs
+    .readdirSync(examples)
+    .filter((name) => fs.statSync(path.join(examples, name)).isDirectory())
+    .map((name) => [[`@three/${name}`], `@three/examples/jsm/${name}`])
+)
 
 const preset = {
   module: {
@@ -35,12 +24,9 @@ const preset = {
   },
   resolve: {
     alias: {
-      ...generateAliases(),
-      '@three/core': 'three/src/Three.js',
-      '@three/examples': 'three/examples',
-      '@three/jsm': 'three/examples/jsm',
-      '@three/js': 'three/examples/js',
-      '../../../build/three.module.js': '@three/core',
+      ...aliases,
+      '@three': three,
+      three: 'three/src/Three.js',
     },
   },
 }

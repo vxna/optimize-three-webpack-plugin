@@ -1,3 +1,3 @@
-import { Color } from '@three/core'
+import { Color } from 'three'
 
 export const color = new Color()
