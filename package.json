@@ -18,7 +18,7 @@
     "three"
   ],
   "engines": {
-    "node": ">= 14"
+    "node": ">=14"
   },
   "scripts": {
     "pretest": "yarn lint",
@@ -46,7 +46,8 @@
     "webpack": "^5.60.0"
   },
   "peerDependencies": {
-    "three": "^0.128.0"
+    "three": "^0.128.0",
+    "webpack": ">=5"
   },
   "eslintConfig": {
     "extends": [
