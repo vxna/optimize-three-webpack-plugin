@@ -25,7 +25,10 @@
     "lint": "eslint src/**/*.js --format codeframe --fix",
     "test": "env NODE_ENV=production jest",
     "format": "prettier src/**/*.{js,md} --write",
-    "posttest": "yarn format"
+    "posttest": "yarn format",
+    "example:dev": "yarn --cwd example dev",
+    "example:build": "yarn --cwd example build",
+    "example:start": "yarn --cwd example start"
   },
   "devDependencies": {
     "eslint": "^7.7.0",
@@ -53,6 +56,9 @@
     "extends": [
       "standard",
       "prettier"
+    ],
+    "ignorePatterns": [
+      "example/**/*"
     ],
     "env": {
       "jest": true

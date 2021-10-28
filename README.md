@@ -14,6 +14,8 @@ A compat layer that enables tree shaking and human-readable imports.
 
 ## Usage
 
+See full [example](./example).
+
 Aliases always [generated](https://github.com/vxna/optimize-three-webpack-plugin/blob/master/src/index.js) at the build time by plugin itself so you're free to use anything that's inside your local [examples/jsm](https://github.com/mrdoob/three.js/tree/master/examples/jsm) folder with just omitting the `examples/jsm` part off your import.
 
 `webpack.config.js`:
@@ -29,41 +31,50 @@ module.exports = {
 Your code:
 
 ```js
-// core import
+// lib imports
 import { WebGLRenderer } from 'three'
 
-// examples import
+// examples/jsm imports
 import { GLTFLoader } from '@three/loaders/GLTFLoader'
 ```
 
 ## Rationale
 
-Using basic https://threejs.org/examples/#webgl_geometry_cube example, results are:
+Using [KTX2 texture loader](https://threejs.org/examples/webgl_loader_texture_ktx2.html) example @ `three@0.133.1`
 
 Before:
 
 ```
-> ls build -ghs
-total 569K
-500K -rw-r--r-- 1 None 497K Dec 15 09:13 0.ceabf32b276fff4b1659.js
- 68K -rw-r--r-- 1 None  67K Dec 15 09:13 crate.da499b8537.gif
-1.0K -rw-r--r-- 1 None  295 Dec 15 09:13 index.html
+$ ls -ghs dist
+total 610K
+4.0K drwxr-xr-x 1 197121    0 Oct 28 06:13 ./
+4.0K drwxr-xr-x 1 197121    0 Oct 28 06:00 ../
+   0 drwxr-xr-x 1 197121    0 Oct 28 06:08 libs/
+ 48K -rw-r--r-- 1 197121  48K Oct 28 06:08 91db5a3f3f298a14c81a.ktx2
+1.0K -rw-r--r-- 1 197121  358 Oct 28 06:10 index.html
+548K -rw-r--r-- 1 197121 545K Oct 28 06:13 main.bundle.js
+1.0K -rw-r--r-- 1 197121   92 Oct 28 06:13 main.bundle.js.LICENSE.txt
+4.0K -rw-r--r-- 1 197121 1.5K Oct 28 06:10 runtime.bundle.js
 
-> gzip-size build\0.ceabf32b276fff4b1659.js
-126 kB
+$ gzip-size dist/main.bundle.js
+134 kB
 ```
 
 After:
 
 ```
-> ls build -ghs
-total 381K
-312K -rw-r--r-- 1 None 312K Dec 15 09:15 0.8e10d7ecdf3c9cb6f57f.js
- 68K -rw-r--r-- 1 None  67K Dec 15 09:15 crate.da499b8537.gif
-1.0K -rw-r--r-- 1 None  295 Dec 15 09:15 index.html
+$ ls -ghs dist
+total 513K
+4.0K drwxr-xr-x 1 197121    0 Oct 28 06:17 ./
+4.0K drwxr-xr-x 1 197121    0 Oct 28 06:00 ../
+   0 drwxr-xr-x 1 197121    0 Oct 28 06:08 libs/
+ 48K -rw-r--r-- 1 197121  48K Oct 28 06:08 91db5a3f3f298a14c81a.ktx2
+1.0K -rw-r--r-- 1 197121  358 Oct 28 06:10 index.html
+452K -rw-r--r-- 1 197121 451K Oct 28 06:17 main.bundle.js
+4.0K -rw-r--r-- 1 197121 1.5K Oct 28 06:10 runtime.bundle.js
 
-> gzip-size build\0.8e10d7ecdf3c9cb6f57f.js
-78.7 kB
+$ gzip-size dist/main.bundle.js
+115 kB
 ```
 
 ## Older browsers
