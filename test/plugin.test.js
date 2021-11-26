@@ -3,9 +3,9 @@ jest.setTimeout(10000)
 const compiler = require('./helpers/compiler')
 const getConfig = require('./helpers/config')
 
-// as of three@0.134.0
-const CORE_SIZE = 7897
-const EXAMPLES_SIZE = 203460
+// as of three@0.135.0
+const CORE_SIZE = 7862
+const EXAMPLES_SIZE = 203465
 
 test('plugin: core import', async () => {
   const config = getConfig()
