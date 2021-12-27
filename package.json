@@ -24,29 +24,29 @@
     "pretest": "yarn lint",
     "lint": "eslint src/**/*.js --fix",
     "test": "env NODE_ENV=production jest",
-    "format": "prettier src/**/*.{js,md} --write",
+    "format": "prettier src/**/*.js --write",
     "posttest": "yarn format",
     "example:dev": "yarn --cwd example dev",
     "example:build": "yarn --cwd example build",
     "example:start": "yarn --cwd example start"
   },
   "devDependencies": {
-    "eslint": "^8.3.0",
+    "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-standard": "^4.1.0",
     "file-loader": "^6.2.0",
     "husky": "^4.2.5",
-    "jest": "^27.3.1",
+    "jest": "^27.4.5",
     "lint-staged": "^10.2.13",
     "memfs": "^3.4.0",
     "memory-fs": "^0.5.0",
-    "prettier": "^2.5.0",
-    "three": "^0.135.0",
-    "webpack": "^5.64.4"
+    "prettier": "^2.5.1",
+    "three": "^0.136.0",
+    "webpack": "^5.65.0"
   },
   "eslintConfig": {
     "extends": [
